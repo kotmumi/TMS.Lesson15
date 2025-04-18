@@ -35,9 +35,21 @@ class ViewController: UIViewController {
     
     @objc func showAlert() {
         let alert = CustomAlertViewController()
-        alert.modalPresentationStyle = .overFullScreen 
+       
+        alert.modalPresentationStyle = .overFullScreen
         alert.modalTransitionStyle = .crossDissolve
-        present(alert, animated: true)
+        alert.view.isHidden = true
+        present(alert, animated: false) {
+            
+            alert.view.frame = CGRect(x: self.view.frame.midX - 150, y: -1000, width: 300, height: 200)
+            alert.view.isHidden = false
+            UIView.animate(withDuration: 0.5) {
+            alert.view.frame = CGRect(x: self.view.frame.midX - 150,y:  self.view.frame.midY - 100, width: 300, height: 200)
+        }
+        
+           
+            
+        }
     }
     
 }
